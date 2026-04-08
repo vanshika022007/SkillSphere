@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>SkillSphere</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-  <h1>🌐 SkillSphere</h1>
+<body class="dark">
 
-  <div id="container"></div>
+<h1>🚀 SkillSphere</h1>
 
-  <script src="sketch.js"></script>
+<div class="controls">
+  <input type="text" id="search" placeholder="Search resources..." />
+
+  <select id="sort">
+    <option value="">Sort</option>
+    <option value="asc">A → Z</option>
+    <option value="desc">Z → A</option>
+  </select>
+
+  <select id="filter">
+    <option value="">All Sources</option>
+  </select>
+
+  <button id="toggleTheme" class="toggle">Toggle Theme</button>
+</div>
+
+<div id="container"></div>
+
+<script src="sketch.js"></script>
+
 </body>
 </html>
