@@ -10,7 +10,7 @@ let allData = [];
 let favorites = [];     
 
 function fetchData() {
-  container.innerHTML = "<h2>Loading...</h2>";
+  container.innerHTML = "<h2>Loading resources...</h2>";
 
   fetch(url)
     .then(res => res.json())
@@ -32,7 +32,7 @@ function displayData(data) {
     const card = document.createElement("div");
     card.className = "card";
 
-    const fullText = item.description || "No Title";
+    const fullText = item.description || "No Description Available";
     const link = item.url || "#";
 
     const title = fullText.split(".")[0];
@@ -48,7 +48,7 @@ function displayData(data) {
       <h3>${title}</h3>
       <p class="source">Source: ${website}</p>
 
-      <button class="open-btn" onclick="openResource('${link}')">
+      <button class="open-btn" title="Open learning resource" onclick="openResource('${link}')">
         Open
       </button>
 
