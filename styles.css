@@ -24,12 +24,12 @@ body {
 h1 {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .controls {
   max-width: 1100px;
-  margin: 0 auto 40px;
+  margin: 0 auto 50px;
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -41,15 +41,12 @@ h1 {
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #cbd5f5;
-  outline: none;
-  background: white;
 }
 
 body.dark .controls input,
 body.dark .controls select {
   background: rgba(30, 41, 59, 0.8);
   color: #e2e8f0;
-  border: 1px solid #475569;
 }
 
 #container {
@@ -57,48 +54,48 @@ body.dark .controls select {
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 22px;
+  gap: 28px;
 }
 
 .card {
-  border-radius: 14px;
-  padding: 20px;
-  transition: 0.3s;
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
 }
 
 body.dark .card {
   background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 body.light .card {
   background: white;
   border: 1px solid #e5e7eb;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.25);
 }
 
-.card h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 13px;
-  margin-bottom: 15px;
+.card-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 button {
-  padding: 8px 14px;
+  padding: 6px 12px;
   border-radius: 8px;
   border: none;
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
-  margin-top: 6px;
   height: 34px;
   transition: 0.25s;
 }
@@ -110,17 +107,40 @@ button {
 
 .fav {
   background: linear-gradient(135deg, #475569, #64748b);
-  color: #e2e8f0;
-}
-
-.toggle {
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
   color: white;
 }
 
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.pagination button {
+  background: #334155;
+  color: white;
+}
+
+.pagination .active {
+  background: #6366f1;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 600px) {
@@ -145,11 +165,59 @@ button:hover {
     font-size: 2rem;
   }
 
-  body {
-    padding: 30px 15px;
-  }
-
   #container {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
+}
+
+.card-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+}
+
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination button {
+  background: #334155;
+  color: white;
+  padding: 6px 10px;
+}
+
+.pagination .active {
+  background: #6366f1;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.pagination-wrapper {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }

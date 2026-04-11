@@ -6,8 +6,10 @@ const sortSelect = document.getElementById("sort");
 const filterSelect = document.getElementById("filter");
 const toggleBtn = document.getElementById("toggleTheme");
 
-let allData = [];       
-let favorites = [];     
+let allData = [];
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+let currentPage = 1;
+const itemsPerPage = 8;
 
 function fetchData() {
   container.innerHTML = "<h2>Loading resources...</h2>";
@@ -15,8 +17,8 @@ function fetchData() {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      allData = data;        
-      setupFilter(data);     
+      allData = data;
+      setupFilter(data);
       displayData(data);
     })
     .catch(error => {
@@ -28,13 +30,17 @@ function fetchData() {
 function displayData(data) {
   container.innerHTML = "";
 
-  data.forEach((item, index) => {   
+  const start = (currentPage - 1) * itemsPerPage;
+  const paginated = data.slice(start, start + itemsPerPage);
+
+  paginated.forEach((item, index) => {
     const card = document.createElement("div");
     card.className = "card";
 
+    card.style.animationDelay = `${index * 0.05}s`;
+
     const fullText = item.description || "No Description Available";
     const link = item.url || "#";
-
     const title = fullText.split(".")[0];
 
     let website = "Unknown";
@@ -42,23 +48,40 @@ function displayData(data) {
       website = new URL(link).hostname;
     } catch {}
 
-    const isFav = favorites.includes(index);  
+    const isFav = favorites.includes(link);
 
     card.innerHTML = `
       <h3>${title}</h3>
       <p class="source">Source: ${website}</p>
 
-      <button class="open-btn" title="Open learning resource" onclick="openResource('${link}')">
-        Open
-      </button>
+      <div class="card-buttons">
+        <button class="open-btn" onclick="openResource('${link}')">Open</button>
 
-      <button class="fav" onclick="toggleFav(${index})">
-        ${isFav ? "★" : "☆"}
-      </button>
+        <button class="fav" onclick="toggleFav('${link}')">
+          ${isFav ? "★" : "☆"}
+        </button>
+
+        <button class="view" onclick="viewMore('${fullText}')">
+          View
+        </button>
+      </div>
     `;
 
     container.appendChild(card);
   });
+
+  renderPagination(data.length);
+}
+
+function toggleFav(link) {
+  if (favorites.includes(link)) {
+    favorites = favorites.filter(i => i !== link);
+  } else {
+    favorites.push(link);
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  displayData(allData);
 }
 
 searchInput.addEventListener("input", () => {
@@ -68,6 +91,7 @@ searchInput.addEventListener("input", () => {
     (item.description || "").toLowerCase().includes(value)
   );
 
+  currentPage = 1;
   displayData(filtered);
 });
 
@@ -78,9 +102,7 @@ sortSelect.addEventListener("change", () => {
     sorted.sort((a, b) => {
       const A = (a.description || "").toLowerCase();
       const B = (b.description || "").toLowerCase();
-      if (A > B) return 1;
-      if (A < B) return -1;
-      return 0;
+      return A > B ? 1 : A < B ? -1 : 0;
     });
   }
 
@@ -88,9 +110,7 @@ sortSelect.addEventListener("change", () => {
     sorted.sort((a, b) => {
       const A = (a.description || "").toLowerCase();
       const B = (b.description || "").toLowerCase();
-      if (A < B) return 1;
-      if (A > B) return -1;
-      return 0;
+      return A < B ? 1 : A > B ? -1 : 0;
     });
   }
 
@@ -132,18 +152,41 @@ filterSelect.addEventListener("change", () => {
     }
   });
 
+  currentPage = 1;
   displayData(filtered);
 });
 
-/* ⭐ FAVORITE (NEW) */
-function toggleFav(index) {
-  if (favorites.includes(index)) {
-    favorites = favorites.filter(i => i !== index);
-  } else {
-    favorites.push(index);
+function renderPagination(total) {
+  const pages = Math.ceil(total / itemsPerPage);
+
+  const nav = document.createElement("div");
+  nav.className = "pagination";
+
+  for (let i = 1; i <= pages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+
+    if (i === currentPage) {
+      btn.classList.add("active");
+    }
+
+    btn.onclick = () => {
+      currentPage = i;
+      displayData(allData);
+    };
+
+    nav.appendChild(btn);
   }
 
-  displayData(allData);
+  const wrapper = document.createElement("div");
+  wrapper.className = "pagination-wrapper";
+
+  wrapper.appendChild(nav);
+  container.appendChild(wrapper);
+}
+
+function viewMore(text) {
+  alert(text);
 }
 
 toggleBtn.addEventListener("click", () => {
@@ -152,15 +195,7 @@ toggleBtn.addEventListener("click", () => {
 });
 
 function openResource(link) {
-  try {
-    const newTab = window.open(link, "_blank");
-
-    if (!newTab) {
-      alert("This resource could not be opened.");
-    }
-  } catch (error) {
-    alert("Invalid or broken link.");
-  }
+  window.open(link, "_blank");
 }
 
 fetchData();

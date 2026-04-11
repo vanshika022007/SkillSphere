@@ -21,7 +21,7 @@ The objective of this project is to demonstrate:
 
 ## 🌐 API Used
 
-* Coding Resources API
+* Coding Resources API  
   https://api.sampleapis.com/codingresources/codingResources
 
 ---
@@ -30,14 +30,11 @@ The objective of this project is to demonstrate:
 
 ### 🔍 Search Functionality
 
-* Users can search resources by title
+* Users can search resources by title or description
 
 ### 🎯 Filtering
 
-* Filter resources based on type:
-
-  * Course
-  * Article
+* Filter resources based on website/source
 
 ### 🔃 Sorting
 
@@ -46,80 +43,89 @@ The objective of this project is to demonstrate:
   * A → Z
   * Z → A
 
+### ⭐ Favorites
+
+* Users can mark resources as favorites  
+* Favorites are stored using localStorage  
+
+### 📄 Pagination
+
+* Resources are divided into multiple pages for better viewing  
+
 ### 📚 Resource Display
 
 Each resource includes:
 
-* Title
-* Description
-* Type
+* Title  
+* Source (website name)  
 
-### 🔗 Resource Details & Navigation
+### 🔗 Resource Navigation
 
-* Clicking on "Open Resource" shows detailed information
-* Users can then visit the actual resource website through a button
+* Clicking on "Open Resource" opens the learning website in a new tab  
+
+### 👁 View More
+
+* Displays full resource description using alert  
 
 ### 🌙 Dark Mode
 
-* Toggle between light and dark themes
+* Toggle between light and dark themes  
 
 ### 📱 Responsive Design
 
-* Fully responsive across mobile, tablet, and desktop
+* Fully responsive across mobile, tablet, and desktop  
 
 ---
 
 ## 🛠️ Technologies Used
 
-* HTML
-* CSS / Tailwind CSS (optional)
-* JavaScript (Vanilla JS)
-* Fetch API
+* HTML  
+* CSS  
+* JavaScript (Vanilla JS)  
+* Fetch API  
 
 ---
 
 ## ⚙️ How to Run the Website
 
-1. Clone the repository:
-
-   ```bash
+1. Clone the repository  
    git clone <your-repository-link>
-   ```
 
-2. Open the project folder
+2. Open the project folder  
 
-3. Open `index.html` in your browser
+3. Open `index.html` in your browser  
 
 ---
 
 ## 📊 JavaScript Concepts Used
 
-* Fetch API for data retrieval
-* Promises (.then, .catch)
+* Fetch API for data retrieval  
+* Promises (.then, .catch)  
 * Array methods:
 
-  * map()
-  * filter()
-  * sort()
-* DOM manipulation
-* Event handling
+  * map()  
+  * filter()  
+  * sort()  
+* DOM manipulation  
+* Event handling  
+* Local Storage  
 
 ---
 
 ## 📈 Future Enhancements
 
-* Add favorites using localStorage
-* Pagination
-* Debounced search
+* Improve UI for "View More" (modal instead of alert)  
+* Add better category-based filtering  
+* Add loading animations  
 
 ---
 
 ## 💡 Author
 
-* Vanshika
+* Vanshika  
 
 ---
 
 ## 🚀 Conclusion
 
-SkillSphere is a user-friendly learning resource website that demonstrates core JavaScript concepts while providing an efficient way to explore coding resources.
+SkillSphere is a user-friendly learning resource website that demonstrates core JavaScript concepts while providing an efficient and interactive way to explore coding resources.
