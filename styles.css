@@ -144,21 +144,19 @@ button:active {
 }
 
 @media (max-width: 600px) {
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  .controls {
+  .card-buttons {
     flex-direction: column;
-    align-items: center;
   }
 
-  .controls input,
-  .controls select,
-  .controls button {
-    width: 100%;
+  body {
+    padding: 20px 10px;
+  }
+
+  h1 {
+    margin-bottom: 40px;
   }
 }
+
 
 @media (max-width: 900px) {
   h1 {
@@ -167,6 +165,12 @@ button:active {
 
   #container {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  button {
+    font-size: 13px;
   }
 }
 
@@ -220,4 +224,15 @@ button:active {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+}
+
+body.light .pagination button {
+  background: white;
+  color: black;
+  border: 1px solid #e5e7eb;
+}
+
+body.light .pagination .active {
+  background: #6366f1;
+  color: white;
 }
