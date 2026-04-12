@@ -12,6 +12,8 @@ let currentPage = 1;
 const itemsPerPage = 8;
 
 function fetchData() {
+  if (allData.length) return;
+  
   container.innerHTML = "<h2>Loading resources...</h2>";
 
   fetch(url)
