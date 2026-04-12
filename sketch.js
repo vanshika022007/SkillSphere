@@ -192,6 +192,12 @@ function viewMore(text) {
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("light");
   document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("light")) {
+    toggleBtn.src = "sun.png";
+  } else {
+    toggleBtn.src = "moon.avif";
+  }
 });
 
 function openResource(link) {

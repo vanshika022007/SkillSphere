@@ -236,3 +236,33 @@ body.light .pagination .active {
   background: #6366f1;
   color: white;
 }
+
+.theme-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  cursor: pointer;
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.theme-icon:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+body.light .theme-icon {
+  background: white;
+  border: none; /* remove border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
