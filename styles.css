@@ -247,7 +247,7 @@ body.light .pagination .active {
   object-fit: cover;
 
   padding: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: white;
 
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -255,6 +255,7 @@ body.light .pagination .active {
   cursor: pointer;
   z-index: 1000;
   transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(245, 237, 2, 0.12);
 }
 
 .theme-icon:hover {
@@ -263,6 +264,18 @@ body.light .pagination .active {
 
 body.light .theme-icon {
   background: white;
-  border: none; /* remove border */
+  border: none; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medal {
+  height: 60px;
+  width: 45px;
+  margin-right: 20px;
 }

@@ -194,9 +194,9 @@ toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 
   if (document.body.classList.contains("light")) {
-    toggleBtn.src = "sun.png";
-  } else {
     toggleBtn.src = "moon.avif";
+  } else {
+    toggleBtn.src = "sun.png";
   }
 });
 

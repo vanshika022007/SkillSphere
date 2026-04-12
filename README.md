@@ -1,4 +1,4 @@
-# 🌐 SkillSphere – Learning Resource Website
+# 🏅 SkillSphere – Learning Resource Website
 
 ## 📌 Project Overview
 
